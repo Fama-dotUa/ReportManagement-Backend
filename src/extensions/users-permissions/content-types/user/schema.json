@@ -1,78 +1,106 @@
 {
-	"kind": "collectionType",
-	"collectionName": "up_users",
-	"info": {
-		"name": "user",
-		"description": "",
-		"singularName": "user",
-		"pluralName": "users",
-		"displayName": "User"
-	},
-	"options": {
-		"draftAndPublish": false
-	},
-	"pluginOptions": {},
-	"attributes": {
-		"username": {
-			"type": "string",
-			"minLength": 3,
-			"unique": true,
-			"configurable": false,
-			"required": true
-		},
-		"email": {
-			"type": "email",
-			"minLength": 6,
-			"configurable": false,
-			"required": false
-		},
-		"provider": {
-			"type": "string",
-			"configurable": false
-		},
-		"password": {
-			"type": "password",
-			"minLength": 6,
-			"configurable": false,
-			"private": true,
-			"searchable": false
-		},
-		"resetPasswordToken": {
-			"type": "string",
-			"configurable": false,
-			"private": true,
-			"searchable": false
-		},
-		"confirmationToken": {
-			"type": "string",
-			"configurable": false,
-			"private": true,
-			"searchable": false
-		},
-		"confirmed": {
-			"type": "boolean",
-			"default": false,
-			"configurable": false
-		},
-		"blocked": {
-			"type": "boolean",
-			"default": false,
-			"configurable": false
-		},
-		"role": {
-			"type": "relation",
-			"relation": "manyToOne",
-			"target": "plugin::users-permissions.role",
-			"inversedBy": "users",
-			"configurable": false
-		},
-		"discord": {
-			"type": "string",
-			"minLength": 2,
-			"maxLength": 37,
-			"required": true,
-			"unique": true,
-			"regex": "^([a-zA-Z0-9_.]{2,32}|[a-zA-Z0-9_]{2,32}#[0-9]{4})$"
-		}
-	}
+  "kind": "collectionType",
+  "collectionName": "up_users",
+  "info": {
+    "name": "user",
+    "description": "",
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "User"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": false
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
+    "password": {
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "resetPasswordToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmationToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true,
+      "searchable": false
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "role": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.role",
+      "inversedBy": "users",
+      "configurable": false
+    },
+    "discord": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 37,
+      "required": true,
+      "unique": true,
+      "regex": "^([a-zA-Z0-9_.]{2,32}|[a-zA-Z0-9_]{2,32}#[0-9]{4})$"
+    },
+    "Icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "rank": {
+      "type": "enumeration",
+      "enum": [
+        "∙ Рядовой | PVT",
+        "∙∙ Рядовой второго класса | PV2",
+        "∙∙∙ Рядовой первого класса | PFC",
+        "▰ Капрал | CPL",
+        "▰▰ Сержант | SGT",
+        "▰▰▰ Сержант первого класса | SFC",
+        "◁ Младший лейтенант | 2LT",
+        "◁◁ Лейтенант | 1LT",
+        "◁◁◁ Капитан | CPT",
+        "◆ Майор | MAJ",
+        "◆◆  Подполковник | LTC",
+        "◆◆◆  Полковник | COL",
+        "★ Бригадный генерал | BG",
+        "★★ Генерал-майор | MG",
+        "★★★ Генерал-лейтенант | LTG",
+        "★★★★ Генерал | GEN"
+      ]
+    }
+  }
 }
