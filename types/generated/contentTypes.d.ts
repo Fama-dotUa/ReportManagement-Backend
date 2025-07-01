@@ -373,6 +373,31 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRankRank extends Struct.CollectionTypeSchema {
+  collectionName: 'ranks';
+  info: {
+    displayName: 'rank';
+    pluralName: 'ranks';
+    singularName: 'rank';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::rank.rank'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiReportReport extends Struct.CollectionTypeSchema {
   collectionName: 'reports';
   info: {
@@ -951,26 +976,7 @@ export interface PluginUsersPermissionsUser
       }>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    rank: Schema.Attribute.Enumeration<
-      [
-        '\u2219 \u0420\u044F\u0434\u043E\u0432\u043E\u0439 | PVT',
-        '\u2219\u2219 \u0420\u044F\u0434\u043E\u0432\u043E\u0439 \u0432\u0442\u043E\u0440\u043E\u0433\u043E \u043A\u043B\u0430\u0441\u0441\u0430 | PV2',
-        '\u2219\u2219\u2219 \u0420\u044F\u0434\u043E\u0432\u043E\u0439 \u043F\u0435\u0440\u0432\u043E\u0433\u043E \u043A\u043B\u0430\u0441\u0441\u0430 | PFC',
-        '\u25B0 \u041A\u0430\u043F\u0440\u0430\u043B | CPL',
-        '\u25B0\u25B0 \u0421\u0435\u0440\u0436\u0430\u043D\u0442 | SGT',
-        '\u25B0\u25B0\u25B0 \u0421\u0435\u0440\u0436\u0430\u043D\u0442 \u043F\u0435\u0440\u0432\u043E\u0433\u043E \u043A\u043B\u0430\u0441\u0441\u0430 | SFC',
-        '\u25C1 \u041C\u043B\u0430\u0434\u0448\u0438\u0439 \u043B\u0435\u0439\u0442\u0435\u043D\u0430\u043D\u0442 | 2LT',
-        '\u25C1\u25C1 \u041B\u0435\u0439\u0442\u0435\u043D\u0430\u043D\u0442 | 1LT',
-        '\u25C1\u25C1\u25C1 \u041A\u0430\u043F\u0438\u0442\u0430\u043D | CPT',
-        '\u25C6 \u041C\u0430\u0439\u043E\u0440 | MAJ',
-        '\u25C6\u25C6  \u041F\u043E\u0434\u043F\u043E\u043B\u043A\u043E\u0432\u043D\u0438\u043A | LTC',
-        '\u25C6\u25C6\u25C6  \u041F\u043E\u043B\u043A\u043E\u0432\u043D\u0438\u043A | COL',
-        '\u2605 \u0411\u0440\u0438\u0433\u0430\u0434\u043D\u044B\u0439 \u0433\u0435\u043D\u0435\u0440\u0430\u043B | BG',
-        '\u2605\u2605 \u0413\u0435\u043D\u0435\u0440\u0430\u043B-\u043C\u0430\u0439\u043E\u0440 | MG',
-        '\u2605\u2605\u2605 \u0413\u0435\u043D\u0435\u0440\u0430\u043B-\u043B\u0435\u0439\u0442\u0435\u043D\u0430\u043D\u0442 | LTG',
-        '\u2605\u2605\u2605\u2605 \u0413\u0435\u043D\u0435\u0440\u0430\u043B | GEN',
-      ]
-    >;
+    rank: Schema.Attribute.Relation<'oneToOne', 'api::rank.rank'>;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',
@@ -998,6 +1004,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::rank.rank': ApiRankRank;
       'api::report.report': ApiReportReport;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
