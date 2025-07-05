@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reasons",
+  "info": {
+    "singularName": "reason",
+    "pluralName": "reasons",
+    "displayName": "reason"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cipher": {
+      "type": "enumeration",
+      "enum": [
+        "С",
+        "О",
+        "Н",
+        "Р",
+        "П",
+        "Д",
+        "И",
+        "М",
+        "Г",
+        "К"
+      ]
+    },
+    "number": {
+      "type": "integer",
+      "default": 100,
+      "min": 0,
+      "max": 1000
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}
