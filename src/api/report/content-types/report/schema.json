@@ -11,14 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
-      "type": "string",
-      "maxLength": 45,
-      "required": true
-    },
-    "description": {
-      "type": "richtext"
-    },
     "time_to_free": {
       "type": "integer",
       "required": true,
@@ -29,6 +21,27 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::reason.reason"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "reports"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "creator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files"
+      ]
     }
   }
 }

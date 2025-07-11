@@ -85,6 +85,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::rank.rank"
+    },
+    "reports": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::report.report",
+      "mappedBy": "user"
     }
   }
 }
