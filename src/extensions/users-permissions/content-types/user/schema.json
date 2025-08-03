@@ -91,6 +91,9 @@
       "relation": "oneToMany",
       "target": "api::report.report",
       "mappedBy": "user"
+    },
+    "Description": {
+      "type": "richtext"
     }
   }
 }

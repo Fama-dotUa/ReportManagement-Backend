@@ -959,6 +959,7 @@ export interface PluginUsersPermissionsUser
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Description: Schema.Attribute.RichText;
     discord: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
