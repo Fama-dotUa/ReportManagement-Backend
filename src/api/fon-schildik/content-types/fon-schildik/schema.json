@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "fon_schildiks",
+  "info": {
+    "singularName": "fon-schildik",
+    "pluralName": "fon-schildiks",
+    "displayName": "fonSchildik"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": "\"Название\""
+    },
+    "description": {
+      "type": "string",
+      "default": "Краткое описание"
+    },
+    "CR": {
+      "type": "integer",
+      "default": 100,
+      "min": 0
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

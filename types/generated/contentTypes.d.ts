@@ -373,6 +373,175 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFonSchildikFonSchildik extends Struct.CollectionTypeSchema {
+  collectionName: 'fon_schildiks';
+  info: {
+    displayName: 'fonSchildik';
+    pluralName: 'fon-schildiks';
+    singularName: 'fon-schildik';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    CR: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<100>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435'>;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::fon-schildik.fon-schildik'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'"\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFramesforAvatarFramesforAvatar
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'framesfor_avatars';
+  info: {
+    displayName: 'framesforAvatar';
+    pluralName: 'framesfor-avatars';
+    singularName: 'framesfor-avatar';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    CR: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<100>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435'>;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::framesfor-avatar.framesfor-avatar'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u0420\u0430\u043C\u043A\u0430 "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPositionPosition extends Struct.CollectionTypeSchema {
+  collectionName: 'positions';
+  info: {
+    displayName: 'position';
+    pluralName: 'positions';
+    singularName: 'position';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    CR: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<100>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::position.position'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'>;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<
+      [
+        '\u0412\u043E\u0437\u0434\u0443\u0448\u043D\u0430\u044F \u0422\u0435\u0445\u043D\u0438\u043A\u0430',
+        '\u041D\u0430\u0437\u0435\u043C\u043D\u0430\u044F \u0422\u0435\u0445\u043D\u0438\u043A\u0430',
+        '\u041F\u0435\u0445\u043E\u0442\u0430 \u0438 \u0421\u043F\u0435\u0446\u0438\u0430\u043B\u0438\u0441\u0442\u044B',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'\u0412\u043E\u0437\u0434\u0443\u0448\u043D\u0430\u044F \u0422\u0435\u0445\u043D\u0438\u043A\u0430'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProfileBackgroundProfileBackground
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'profile_backgrounds';
+  info: {
+    displayName: 'profileBackground';
+    pluralName: 'profile-backgrounds';
+    singularName: 'profile-background';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    CR: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<100>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435'>;
+    Image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::profile-background.profile-background'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u0424\u043E\u043D "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiRankRank extends Struct.CollectionTypeSchema {
   collectionName: 'ranks';
   info: {
@@ -956,6 +1125,15 @@ export interface PluginUsersPermissionsUser
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    CR: Schema.Attribute.BigInteger & Schema.Attribute.DefaultTo<'0'>;
+    CR_for_all_time: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -971,6 +1149,22 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    fon_schildik_active: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::fon-schildik.fon-schildik'
+    >;
+    fon_schildiks_all: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::fon-schildik.fon-schildik'
+    >;
+    framesfor_avatar_active: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::framesfor-avatar.framesfor-avatar'
+    >;
+    framesfor_avatars_all: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::framesfor-avatar.framesfor-avatar'
+    >;
     Icon: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -983,6 +1177,15 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    positions: Schema.Attribute.Relation<'oneToMany', 'api::position.position'>;
+    profile_background_active: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::profile-background.profile-background'
+    >;
+    profile_backgrounds_all: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::profile-background.profile-background'
+    >;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     rank: Schema.Attribute.Relation<'oneToOne', 'api::rank.rank'>;
@@ -1014,6 +1217,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::fon-schildik.fon-schildik': ApiFonSchildikFonSchildik;
+      'api::framesfor-avatar.framesfor-avatar': ApiFramesforAvatarFramesforAvatar;
+      'api::position.position': ApiPositionPosition;
+      'api::profile-background.profile-background': ApiProfileBackgroundProfileBackground;
       'api::rank.rank': ApiRankRank;
       'api::reason.reason': ApiReasonReason;
       'api::report.report': ApiReportReport;

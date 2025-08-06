@@ -94,6 +94,50 @@
     },
     "Description": {
       "type": "richtext"
+    },
+    "CR": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "positions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::position.position"
+    },
+    "fon_schildiks_all": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::fon-schildik.fon-schildik"
+    },
+    "fon_schildik_active": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::fon-schildik.fon-schildik"
+    },
+    "framesfor_avatars_all": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::framesfor-avatar.framesfor-avatar"
+    },
+    "framesfor_avatar_active": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::framesfor-avatar.framesfor-avatar"
+    },
+    "profile_backgrounds_all": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::profile-background.profile-background"
+    },
+    "profile_background_active": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::profile-background.profile-background"
+    },
+    "CR_for_all_time": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
     }
   }
 }
