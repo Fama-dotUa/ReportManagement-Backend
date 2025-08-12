@@ -13,6 +13,11 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "daily_reward": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
     }
   }
 }

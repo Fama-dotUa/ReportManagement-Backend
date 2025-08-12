@@ -33,6 +33,15 @@
         "Наземная Техника",
         "Пехота и Специалисты"
       ]
+    },
+    "buy": {
+      "type": "boolean",
+      "default": true
+    },
+    "daily_reward": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
     }
   }
 }

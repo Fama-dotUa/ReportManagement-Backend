@@ -24,12 +24,16 @@
       "default": 100,
       "min": 0
     },
-    "Image": {
+    "image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
         "images"
       ]
+    },
+    "buy": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

@@ -31,6 +31,10 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "buy": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

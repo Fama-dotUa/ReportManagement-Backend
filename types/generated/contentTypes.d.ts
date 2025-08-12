@@ -384,6 +384,8 @@ export interface ApiFonSchildikFonSchildik extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    buy: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    color: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#000000'>;
     CR: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
@@ -425,6 +427,7 @@ export interface ApiFramesforAvatarFramesforAvatar
     draftAndPublish: true;
   };
   attributes: {
+    buy: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     CR: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
@@ -465,6 +468,7 @@ export interface ApiPositionPosition extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    buy: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     CR: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
@@ -476,6 +480,14 @@ export interface ApiPositionPosition extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    daily_reward: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     description: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -513,6 +525,7 @@ export interface ApiProfileBackgroundProfileBackground
     draftAndPublish: true;
   };
   attributes: {
+    buy: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     CR: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
@@ -526,7 +539,7 @@ export interface ApiProfileBackgroundProfileBackground
       Schema.Attribute.Private;
     description: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435'>;
-    Image: Schema.Attribute.Media<'images'>;
+    image: Schema.Attribute.Media<'images'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -556,6 +569,14 @@ export interface ApiRankRank extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    daily_reward: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<1>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::rank.rank'> &
       Schema.Attribute.Private;
@@ -1166,6 +1187,7 @@ export interface PluginUsersPermissionsUser
       'api::framesfor-avatar.framesfor-avatar'
     >;
     Icon: Schema.Attribute.Media<'images'>;
+    last_login: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
