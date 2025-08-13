@@ -141,6 +141,9 @@
     },
     "last_login": {
       "type": "datetime"
+    },
+    "last_seen": {
+      "type": "datetime"
     }
   }
 }

@@ -686,6 +686,55 @@ export interface ApiReportReport extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTrainingRequestTrainingRequest
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'training_requests';
+  info: {
+    displayName: 'TrainingRequest';
+    pluralName: 'training-requests';
+    singularName: 'training-request';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    applicant: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    consideration_deadline: Schema.Attribute.DateTime;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    instructor: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::training-request.training-request'
+    > &
+      Schema.Attribute.Private;
+    position: Schema.Attribute.Relation<'oneToOne', 'api::position.position'>;
+    publishedAt: Schema.Attribute.DateTime;
+    rejection_reason: Schema.Attribute.Text;
+    status_request: Schema.Attribute.Enumeration<
+      [
+        '\u0440\u0430\u0441\u0441\u043C\u0430\u0442\u0440\u0438\u0432\u0430\u0435\u0442\u0441\u044F',
+        '\u043E\u0431\u0443\u0447\u0430\u0435\u0442\u0441\u044F',
+        '\u043E\u0431\u0443\u0447\u0435\u043D',
+        '\u043E\u0442\u043A\u043B\u043E\u043D\u0451\u043D',
+        '\u0445\u0430\u043B\u0442\u0443\u0440\u0430 \u043D\u0430\u0447\u0430\u043B\u044C\u0441\u0442\u0432\u0430',
+        '\u043F\u0440\u043E\u0432\u0430\u043B\u0435\u043D\u043E',
+      ]
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1188,6 +1237,7 @@ export interface PluginUsersPermissionsUser
     >;
     Icon: Schema.Attribute.Media<'images'>;
     last_login: Schema.Attribute.DateTime;
+    last_seen: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1246,6 +1296,7 @@ declare module '@strapi/strapi' {
       'api::rank.rank': ApiRankRank;
       'api::reason.reason': ApiReasonReason;
       'api::report.report': ApiReportReport;
+      'api::training-request.training-request': ApiTrainingRequestTrainingRequest;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -1,42 +1,43 @@
 {
-  "name": "report-management-backend",
-  "version": "0.1.0",
-  "private": true,
-  "description": "A Strapi application",
-  "scripts": {
-    "build": "strapi build",
-    "console": "strapi console",
-    "deploy": "strapi deploy",
-    "dev": "strapi develop",
-    "develop": "strapi develop",
-    "start": "strapi start",
-    "strapi": "strapi",
-    "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
-  },
-  "dependencies": {
-    "@strapi/plugin-cloud": "5.16.1",
-    "@strapi/plugin-users-permissions": "5.16.1",
-    "@strapi/strapi": "5.16.1",
-    "better-sqlite3": "11.3.0",
-    "mysql2": "^3.14.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^6.0.0",
-    "styled-components": "^6.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "typescript": "^5"
-  },
-  "engines": {
-    "node": ">=18.0.0 <=22.x.x",
-    "npm": ">=6.0.0"
-  },
-  "strapi": {
-    "uuid": "c3d38a9e-6346-4d52-843f-3bf18b1ff534",
-    "installId": "5d5c6a5f23e3a8c803dd9e187b1b7235b9d4450c52f68cb2e1a443d8baa10c16"
-  }
+	"name": "report-management-backend",
+	"version": "0.1.0",
+	"private": true,
+	"description": "A Strapi application",
+	"scripts": {
+		"build": "strapi build",
+		"console": "strapi console",
+		"deploy": "strapi deploy",
+		"dev": "strapi develop",
+		"migration:up": "strapi migration:up",
+		"develop": "strapi develop",
+		"start": "strapi start",
+		"strapi": "strapi",
+		"upgrade": "npx @strapi/upgrade latest",
+		"upgrade:dry": "npx @strapi/upgrade latest --dry"
+	},
+	"dependencies": {
+		"@strapi/plugin-cloud": "5.16.1",
+		"@strapi/plugin-users-permissions": "5.16.1",
+		"@strapi/strapi": "5.16.1",
+		"better-sqlite3": "11.3.0",
+		"mysql2": "^3.14.1",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+		"react-router-dom": "^6.0.0",
+		"styled-components": "^6.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"typescript": "^5"
+	},
+	"engines": {
+		"node": ">=18.0.0 <=22.x.x",
+		"npm": ">=6.0.0"
+	},
+	"strapi": {
+		"uuid": "c3d38a9e-6346-4d52-843f-3bf18b1ff534",
+		"installId": "5d5c6a5f23e3a8c803dd9e187b1b7235b9d4450c52f68cb2e1a443d8baa10c16"
+	}
 }

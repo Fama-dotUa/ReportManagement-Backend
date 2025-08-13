@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "training_requests",
+  "info": {
+    "singularName": "training-request",
+    "pluralName": "training-requests",
+    "displayName": "TrainingRequest"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "status_request": {
+      "type": "enumeration",
+      "enum": [
+        "рассматривается",
+        "обучается",
+        "обучен",
+        "отклонён",
+        "халтура начальства",
+        "провалено"
+      ]
+    },
+    "applicant": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "instructor": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "position": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::position.position"
+    },
+    "rejection_reason": {
+      "type": "text"
+    },
+    "consideration_deadline": {
+      "type": "datetime"
+    }
+  }
+}
