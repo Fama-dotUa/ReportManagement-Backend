@@ -39,9 +39,6 @@
     },
     "rejection_reason": {
       "type": "text"
-    },
-    "consideration_deadline": {
-      "type": "datetime"
     }
   }
 }

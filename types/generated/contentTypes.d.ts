@@ -465,7 +465,7 @@ export interface ApiPositionPosition extends Struct.CollectionTypeSchema {
     singularName: 'position';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     buy: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
@@ -539,7 +539,7 @@ export interface ApiProfileBackgroundProfileBackground
       Schema.Attribute.Private;
     description: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435'>;
-    image: Schema.Attribute.Media<'images'>;
+    image: Schema.Attribute.Media<'images' | 'videos'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -647,7 +647,7 @@ export interface ApiReportReport extends Struct.CollectionTypeSchema {
     singularName: 'report';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -702,7 +702,6 @@ export interface ApiTrainingRequestTrainingRequest
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    consideration_deadline: Schema.Attribute.DateTime;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1237,6 +1236,7 @@ export interface PluginUsersPermissionsUser
     >;
     Icon: Schema.Attribute.Media<'images'>;
     last_login: Schema.Attribute.DateTime;
+    last_seen: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
