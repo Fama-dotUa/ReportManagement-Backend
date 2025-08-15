@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookkeepings",
+  "info": {
+    "singularName": "bookkeeping",
+    "pluralName": "bookkeepings",
+    "displayName": "bookkeeping"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "default": "выдача",
+      "enum": [
+        "выдача",
+        "взыскание"
+      ]
+    },
+    "sum": {
+      "type": "integer"
+    },
+    "boss": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "soldier": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

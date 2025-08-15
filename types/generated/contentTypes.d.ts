@@ -373,6 +373,50 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBookkeepingBookkeeping extends Struct.CollectionTypeSchema {
+  collectionName: 'bookkeepings';
+  info: {
+    displayName: 'bookkeeping';
+    pluralName: 'bookkeepings';
+    singularName: 'bookkeeping';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    boss: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bookkeeping.bookkeeping'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    soldier: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    sum: Schema.Attribute.Integer;
+    type: Schema.Attribute.Enumeration<
+      [
+        '\u0432\u044B\u0434\u0430\u0447\u0430',
+        '\u0432\u0437\u044B\u0441\u043A\u0430\u043D\u0438\u0435',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'\u0432\u044B\u0434\u0430\u0447\u0430'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFonSchildikFonSchildik extends Struct.CollectionTypeSchema {
   collectionName: 'fon_schildiks';
   info: {
@@ -385,7 +429,6 @@ export interface ApiFonSchildikFonSchildik extends Struct.CollectionTypeSchema {
   };
   attributes: {
     buy: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-    color: Schema.Attribute.String & Schema.Attribute.DefaultTo<'#000000'>;
     CR: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
@@ -1288,6 +1331,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::bookkeeping.bookkeeping': ApiBookkeepingBookkeeping;
       'api::fon-schildik.fon-schildik': ApiFonSchildikFonSchildik;
       'api::framesfor-avatar.framesfor-avatar': ApiFramesforAvatarFramesforAvatar;
       'api::position.position': ApiPositionPosition;

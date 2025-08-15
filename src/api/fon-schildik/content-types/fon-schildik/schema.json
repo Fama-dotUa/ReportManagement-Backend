@@ -31,10 +31,6 @@
         "images"
       ]
     },
-    "color": {
-      "type": "string",
-      "default": "#000000"
-    },
     "buy": {
       "type": "boolean",
       "default": true
