@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "awards_users",
+  "info": {
+    "singularName": "awards-user",
+    "pluralName": "awards-users",
+    "displayName": "Awards--user"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "soldier": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "medals_and_order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::medals-and-order.medals-and-order"
+    },
+    "presentation": {
+      "type": "datetime"
+    }
+  }
+}

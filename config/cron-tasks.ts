@@ -1,5 +1,5 @@
 module.exports = {
-	'*/0 * * * *': async ({ strapi }) => {
+	'0 * * * *': async ({ strapi }) => {
 		console.log('CRON JOB: Проверка просроченных заявок на обучение...')
 
 		const threeDaysAgo = new Date()

@@ -373,6 +373,42 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAwardsUserAwardsUser extends Struct.CollectionTypeSchema {
+  collectionName: 'awards_users';
+  info: {
+    displayName: 'Awards--user';
+    pluralName: 'awards-users';
+    singularName: 'awards-user';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::awards-user.awards-user'
+    > &
+      Schema.Attribute.Private;
+    medals_and_order: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::medals-and-order.medals-and-order'
+    >;
+    presentation: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    soldier: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBookkeepingBookkeeping extends Struct.CollectionTypeSchema {
   collectionName: 'bookkeepings';
   info: {
@@ -494,6 +530,39 @@ export interface ApiFramesforAvatarFramesforAvatar
     name: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u0420\u0430\u043C\u043A\u0430 "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"'>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMedalsAndOrderMedalsAndOrder
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'medals_and_orders';
+  info: {
+    displayName: 'medals-and-order';
+    pluralName: 'medals-and-orders';
+    singularName: 'medals-and-order';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::medals-and-order.medals-and-order'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<
+      ['\u043C\u0435\u0434\u0430\u043B\u044C', '\u043E\u0440\u0434\u0435\u043D']
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1286,6 +1355,10 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    love_medal: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::medals-and-order.medals-and-order'
+    >;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
@@ -1309,6 +1382,12 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    unique_code: Schema.Attribute.String &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 6;
+        minLength: 1;
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1331,9 +1410,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::awards-user.awards-user': ApiAwardsUserAwardsUser;
       'api::bookkeeping.bookkeeping': ApiBookkeepingBookkeeping;
       'api::fon-schildik.fon-schildik': ApiFonSchildikFonSchildik;
       'api::framesfor-avatar.framesfor-avatar': ApiFramesforAvatarFramesforAvatar;
+      'api::medals-and-order.medals-and-order': ApiMedalsAndOrderMedalsAndOrder;
       'api::position.position': ApiPositionPosition;
       'api::profile-background.profile-background': ApiProfileBackgroundProfileBackground;
       'api::rank.rank': ApiRankRank;

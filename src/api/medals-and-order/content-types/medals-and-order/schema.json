@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medals_and_orders",
+  "info": {
+    "singularName": "medals-and-order",
+    "pluralName": "medals-and-orders",
+    "displayName": "medals-and-order"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "медаль",
+        "орден"
+      ]
+    }
+  }
+}
