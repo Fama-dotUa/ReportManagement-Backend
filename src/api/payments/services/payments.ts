@@ -1,6 +1,9 @@
 // src/api/payments/services/payments.ts
 type CheckParams = { code: string; windowHours?: number; timeoutMs?: number }
-
+const PAYMENT_UID = 'api::credited-payment.credited-payment'
+const USER_UID = 'plugin::users-permissions.user'
+// какое поле хранит баланс у пользователя
+const CR_ATTR = 'CR'
 // Нормализация: A-Z0-9 + маппинг кириллицы на похожие латинские символы
 function normalizeAZ09(input: string): string {
 	const s = String(input ?? '').toUpperCase()
@@ -21,7 +24,59 @@ function normalizeAZ09(input: string): string {
 	const mapped = s.replace(/[АВСЕНКМОРТХІ]/g, ch => map[ch] || ch)
 	return mapped.replace(/[^A-Z0-9]+/g, '')
 }
+export async function creditOnce(opts: {
+	txId: string
+	userId: number
+	amountKop: number
+	creditedCr: number
+	code?: string
+	accountId?: string
+	txTime?: number
+}) {
+	const { txId, userId, amountKop, creditedCr, code, accountId, txTime } = opts
 
+	return await strapi.db.connection.transaction(async trx => {
+		const exists = await strapi.db.query(PAYMENT_UID).findOne({
+			where: { txId },
+			select: ['id'],
+		})
+		if (exists) {
+			return { created: false, duplicated: true }
+		}
+
+		try {
+			await strapi.db.query(PAYMENT_UID).create({
+				data: {
+					txId,
+					code,
+					amountKop,
+					creditedCr,
+					accountId,
+					txTime: txTime ?? Date.now(),
+					users_permissions_user: userId,
+				},
+			})
+
+			const userModel = strapi.getModel(USER_UID)
+			const USERS_TABLE =
+				(userModel as any).tableName || (userModel as any).collectionName
+
+			await trx(USERS_TABLE)
+				.where({ id: userId })
+				.increment(CR_ATTR, creditedCr)
+
+			return { created: true, duplicated: false }
+		} catch (e: any) {
+			if (
+				e?.code === 'ER_DUP_ENTRY' ||
+				e?.message?.toLowerCase?.().includes('unique')
+			) {
+				return { created: false, duplicated: true }
+			}
+			throw e
+		}
+	})
+}
 // безопасный fetch с таймаутом
 async function safeFetch(
 	url: string,
@@ -187,28 +242,23 @@ export default () => ({
 				reason: 'У модели пользователя нет поля CR/cr',
 			}
 		}
-
-		// обновляем CR, используя ИМЯ КОЛОНКИ
-		const currentCr = crAttr ? Number(user[crAttr] ?? 0) : 0
-		const nextCr = currentCr + creditedCr
-		console.log(
-			'Пользователь %d: CR %d + %d => %d',
-			user.id,
-			currentCr,
+		const res = await creditOnce({
+			txId: String(match.id), // уникальный ID транзакции от банка
+			userId: user.id,
+			amountKop,
 			creditedCr,
-			nextCr
-		)
-		await strapi.db.query('plugin::users-permissions.user').update({
-			where: { id: user.id },
-			data: crAttr ? { [crAttr]: nextCr } : {}, // важно: ключ — строка
+			code,
+			txTime: Number(match.time) || Date.now(),
 		})
 
 		return {
 			found: true,
-			txId: match?.id ?? null,
+			txId: String(match.id),
 			userId: user.id,
 			amountKop,
 			creditedCr,
+			credited: res.created, // true если реально зачислили
+			duplicate: res.duplicated, // true если платёж уже был
 		}
 	},
 })

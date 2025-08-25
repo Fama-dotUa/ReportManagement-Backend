@@ -1,0 +1,40 @@
+{
+	"kind": "collectionType",
+	"collectionName": "credited_payments",
+	"info": {
+		"singularName": "credited-payment",
+		"pluralName": "credited-payments",
+		"displayName": "credited-payment"
+	},
+	"options": {
+		"draftAndPublish": true
+	},
+	"pluginOptions": {},
+	"attributes": {
+		"txId": {
+			"type": "text",
+			"unique": true
+		},
+		"users_permissions_user": {
+			"type": "relation",
+			"relation": "manyToOne",
+			"target": "plugin::users-permissions.user",
+			"inversedBy": "credited_payments"
+		},
+		"code": {
+			"type": "string"
+		},
+		"amountKop": {
+			"type": "integer"
+		},
+		"creditedCr": {
+			"type": "integer"
+		},
+		"accountId": {
+			"type": "string"
+		},
+		"txTime": {
+			"type": "biginteger"
+		}
+	}
+}

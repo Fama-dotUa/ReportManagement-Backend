@@ -453,6 +453,44 @@ export interface ApiBookkeepingBookkeeping extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCreditedPaymentCreditedPayment
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'credited_payments';
+  info: {
+    displayName: 'credited-payment';
+    pluralName: 'credited-payments';
+    singularName: 'credited-payment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    accountId: Schema.Attribute.String;
+    amountKop: Schema.Attribute.Integer;
+    code: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    creditedCr: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::credited-payment.credited-payment'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    txId: Schema.Attribute.Text & Schema.Attribute.Unique;
+    txTime: Schema.Attribute.BigInteger;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiFonSchildikFonSchildik extends Struct.CollectionTypeSchema {
   collectionName: 'fon_schildiks';
   info: {
@@ -1318,6 +1356,10 @@ export interface PluginUsersPermissionsUser
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    credited_payments: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::credited-payment.credited-payment'
+    >;
     Description: Schema.Attribute.RichText;
     discord: Schema.Attribute.String &
       Schema.Attribute.Required &
@@ -1412,6 +1454,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::awards-user.awards-user': ApiAwardsUserAwardsUser;
       'api::bookkeeping.bookkeeping': ApiBookkeepingBookkeeping;
+      'api::credited-payment.credited-payment': ApiCreditedPaymentCreditedPayment;
       'api::fon-schildik.fon-schildik': ApiFonSchildikFonSchildik;
       'api::framesfor-avatar.framesfor-avatar': ApiFramesforAvatarFramesforAvatar;
       'api::medals-and-order.medals-and-order': ApiMedalsAndOrderMedalsAndOrder;
