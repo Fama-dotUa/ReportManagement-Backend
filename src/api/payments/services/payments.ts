@@ -250,7 +250,6 @@ export default () => ({
 			code,
 			txTime: Number(match.time) || Date.now(),
 		})
-
 		return {
 			found: true,
 			txId: String(match.id),
